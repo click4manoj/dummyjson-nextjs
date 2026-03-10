@@ -16,7 +16,7 @@ export default async function DashboardPage() {
   if (!user) {
     redirect('/login');
   }
-  console.log(user);
+  
   return (
     <>
       <div className='min-h-screen xl:flex bg-white'>

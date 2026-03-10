@@ -17,7 +17,7 @@ export default function DahsboardHeader({ user }: HeaderProps) {
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 	return (
 		<>
-			<header className="sticky top-0 flex w-full bg-white border-gray-200 z-99999 dark:border-gray-800 dark:bg-gray-900 xl:border-b">
+			<header className="sticky top-0 flex w-full bg-white border-gray-200 z-99999 xl:border-b">
 				<div className="flex flex-col items-center justify-between grow xl:flex-row xl:px-6">
 					<div className="flex items-center justify-between w-full gap-2 px-3 py-3 border-b border-gray-200 dark:border-gray-800 sm:gap-4 xl:justify-normal xl:border-b-0 xl:px-0 lg:py-4">
 						<button className="items-center justify-center  w-10 h-10 text-gray-500 border-gray-200 rounded-lg z-99999 dark:border-gray-800 flex dark:text-gray-400 lg:h-11 lg:w-11 xl:border " aria-label="Toggle Sidebar">
@@ -40,7 +40,7 @@ export default function DahsboardHeader({ user }: HeaderProps) {
 						<Link className="xl:hidden" href="/" data-discover="true">
 							AppNextjs
 						</Link>
-						<button className="flex items-center justify-center w-10 h-10 text-gray-700 rounded-lg z-99999 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800 xl:hidden">
+						<button className="flex items-center justify-center w-10 h-10  rounded-lg z-99999 hover:bg-gray-100 dark:text-gray-400  xl:hidden">
 							<svg
 								width="24"
 								height="24"
@@ -77,8 +77,8 @@ export default function DahsboardHeader({ user }: HeaderProps) {
 											/>
 										</svg>
 									</span>
-									<input placeholder="Search or type command..." className="h-11 w-full rounded-lg border border-gray-200 bg-transparent py-2.5 pl-12 pr-14 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-800 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800 xl:w-[430px]" type="text" />
-									<button className="absolute right-2.5 top-1/2 inline-flex -translate-y-1/2 items-center gap-0.5 rounded-lg border border-gray-200 bg-gray-50 px-[7px] py-[4.5px] text-xs -tracking-[0.2px] text-gray-500 dark:border-gray-800 dark:bg-white/[0.03] dark:text-gray-400"><span> ⌘ </span>
+									<input placeholder="Search or type command..." className="h-11 w-full rounded-lg border border-gray-200 bg-transparent py-2.5 pl-12 pr-14 text-sm  shadow-theme-xs focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10  dark:text-white/90  dark:focus:border-brand-800 xl:w-[430px]" type="text" />
+									<button className="absolute right-2.5 top-1/2 inline-flex -translate-y-1/2 items-center gap-0.5 rounded-lg border border-gray-200 bg-gray-50 px-[7px] py-[4.5px] text-xs -tracking-[0.2px] text-gray-500 "><span> ⌘ </span>
 										<span> K </span>
 									</button>
 								</div>
@@ -87,7 +87,7 @@ export default function DahsboardHeader({ user }: HeaderProps) {
 					</div>
 					<div className="hidden items-center justify-between w-full gap-4 px-5 py-4 xl:flex shadow-theme-md xl:justify-end xl:px-0 xl:shadow-none">
 						<div className="flex items-center gap-2 2xsm:gap-3">
-							<button className="relative flex items-center justify-center text-gray-500 transition-colors bg-white border border-gray-200 rounded-full hover:text-dark-900 h-11 w-11 hover:bg-gray-100 hover:text-gray-700 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white">
+							<button className="relative flex items-center justify-center text-gray-500 transition-colors bg-white border border-gray-200 rounded-full hover:text-dark-900 h-11 w-11 hover:bg-gray-100  dark:hover:text-white">
 
 								<svg
 									className="hidden dark:block"
@@ -120,7 +120,7 @@ export default function DahsboardHeader({ user }: HeaderProps) {
 								</svg>
 							</button>
 							<div className="relative">
-								<button className="relative flex items-center justify-center text-gray-500 transition-colors bg-white border border-gray-200 rounded-full dropdown-toggle hover:text-gray-700 h-11 w-11 hover:bg-gray-100 dark:border-gray-800 dark:bg-gray-900 dark:text-gray-400 dark:hover:bg-gray-800 dark:hover:text-white">
+								<button className="relative flex items-center justify-center  bg-white border border-gray-200 rounded-full dropdown-toggle ">
 									<span className="absolute right-0 top-0.5 z-10 h-2 w-2 rounded-full bg-orange-400 flex">
 										<span className="absolute inline-flex w-full h-full bg-orange-400 rounded-full opacity-75 animate-ping"></span></span>
 									<svg
@@ -144,7 +144,7 @@ export default function DahsboardHeader({ user }: HeaderProps) {
 						<div className="relative">
 							<button
 								onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-								className="cursor-pointer flex items-center text-gray-700 dropdown-toggle dark:text-gray-400">
+								className="cursor-pointer flex items-center  dropdown-toggle ">
 								<span className="mr-3 overflow-hidden rounded-full h-11 w-11">
 									<Image width={44} height={44} alt="User" src={user?.image || '/default-avatar.png'} /></span>
 								<span className="block mr-1 font-medium text-theme-sm">{user?.firstName}</span>
@@ -169,13 +169,13 @@ export default function DahsboardHeader({ user }: HeaderProps) {
 
 								<div className="z-40 absolute text-sm right-0 mt-[17px] flex w-[260px] flex-col rounded-2xl border border-gray-200 bg-white p-3 shadow-theme-lg dark:border-gray-800 dark:bg-gray-dark">
 									<div>
-										<span className="block font-medium text-gray-700 text-theme-sm dark:text-gray-400 no-underline">{user?.firstName} {user?.lastName}</span>
-										<span className="mt-0.5 block text-theme-xs text-gray-500 dark:text-gray-400 no-underline">{user?.email}</span>
+										<span className="block font-medium  no-underline">{user?.firstName} {user?.lastName}</span>
+										<span className="mt-0.5 block text-theme-xs  no-underline">{user?.email}</span>
 									</div>
-									<ul className="flex flex-col gap-1 pt-4 pb-3 border-b border-gray-200 dark:border-gray-800"><li>
-										<Link className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 flex items-center gap-3 px-3 py-2 font-medium text-gray-700 rounded-lg group text-theme-sm hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300" href="/profile" data-discover="true">
+									<ul className="flex flex-col gap-1 pt-4 pb-3 border-b border-gray-200 "><li>
+										<Link className="block w-full text-left px-4 py-2 text-sm flex items-center gap-3 px-3 py-2 font-medium text-gray-700 rounded-lg group text-theme-sm hover:bg-gray-100 " href="/profile" data-discover="true">
 											<svg
-												className="fill-gray-500 group-hover:fill-gray-700 dark:fill-gray-400 dark:group-hover:fill-gray-300"
+												className="fill-gray-500 "
 												width="24"
 												height="24"
 												viewBox="0 0 24 24"
@@ -193,9 +193,9 @@ export default function DahsboardHeader({ user }: HeaderProps) {
 										</Link>
 									</li>
 										<li>
-											<Link className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 flex items-center gap-3 px-3 py-2 font-medium text-gray-700 rounded-lg group text-theme-sm hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300" href="/profile" data-discover="true">
+											<Link className="block w-full text-left px-4 py-2 text-sm  flex items-center gap-3 px-3 py-2 font-medium  rounded-lg group text-theme-sm hover:bg-gray-100 " href="/profile" data-discover="true">
 												<svg
-													className="fill-gray-500 group-hover:fill-gray-700 dark:fill-gray-400 dark:group-hover:fill-gray-300"
+													className="fill-gray-500 "
 													width="24"
 													height="24"
 													viewBox="0 0 24 24"
@@ -213,9 +213,9 @@ export default function DahsboardHeader({ user }: HeaderProps) {
 											</Link>
 										</li>
 										<li>
-											<Link className="block w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 flex items-center gap-3 px-3 py-2 font-medium text-gray-700 rounded-lg group text-theme-sm hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300" href="/profile" data-discover="true">
+											<Link className="block w-full text-left px-4 py-2 text-sm  flex items-center gap-3 px-3 py-2 font-medium  rounded-lg group text-theme-sm hover:bg-gray-100 " href="/profile" data-discover="true">
 												<svg
-													className="fill-gray-500 group-hover:fill-gray-700 dark:fill-gray-400 dark:group-hover:fill-gray-300"
+													className="fill-gray-500 "
 													width="24"
 													height="24"
 													viewBox="0 0 24 24"
@@ -236,11 +236,11 @@ export default function DahsboardHeader({ user }: HeaderProps) {
 									<form action={logout} method="POST">
 										<button
 											type="submit"
-											className="cursor-pointer  flex items-center gap-3 px-3 py-2 mt-3 font-medium text-gray-700 rounded-lg group text-theme-sm hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300"
+											className="cursor-pointer  flex items-center gap-3 px-3 py-2 mt-3 font-medium  rounded-lg group text-theme-sm "
 										>
 
 											<svg
-												className="fill-gray-500 group-hover:fill-gray-700 dark:group-hover:fill-gray-300"
+												className="fill-gray-500 "
 												width="24"
 												height="24"
 												viewBox="0 0 24 24"
