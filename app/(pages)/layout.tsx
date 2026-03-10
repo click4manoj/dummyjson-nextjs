@@ -8,7 +8,7 @@ export default function PublicLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div>
+    <div className="bg-white">
       <Header />
       <main>{children}</main>
       <Footer />
