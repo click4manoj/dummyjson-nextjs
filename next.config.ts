@@ -8,6 +8,10 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'dummyjson.com',
         pathname: '/**',  // Allow all paths under this hostname
+      },{
+        protocol: 'https',
+        hostname: 'cdn.dummyjson.com',
+        pathname: '/**',  // Allow all paths under this hostname
       },
     ],
   },

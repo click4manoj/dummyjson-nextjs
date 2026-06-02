@@ -25,5 +25,7 @@ export async function POST(req: Request) {
     path: '/',
   });
 
-  return NextResponse.json({ user: data });
+  return NextResponse.json({ user: data,
+    redirectTo: "/dashboard",
+   });
 }

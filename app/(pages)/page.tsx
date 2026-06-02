@@ -1,14 +1,51 @@
 "use client";
 
 import Link from "next/link";
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import {useRouter} from 'next/navigation'
+import { getCurrentUser } from '../lib/auth';
+import { redirect } from 'next/navigation';
 import { stringify } from "querystring";
-export default function LoginPage() {
+interface User {
+  id: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  image: string;
+}
+
+export default  function LoginPage() {
 const router = useRouter();
-const [username, setUsername] = useState('emilys');
-const [password,setPassword] = useState('emilyspass');
+// const [username, setUsername] = useState('emilys');
+// const [password,setPassword] = useState('emilyspass');
+const [username, setUsername] = useState('');
+const [password,setPassword] = useState('');
 const [error,setError] = useState('');
+const [isCheckingAuth, setIsCheckingAuth] = useState(true); // Added state for auth check
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        // Check auth server‑side (via /api/auth/check)
+        const res = await fetch("/api/auth/check");
+        const data = await res.json();
+        if (data.authenticated) {
+          router.push("/dashboard");
+        }
+      } catch (error) {
+        console.log("Auth check failed:", error);
+      } finally {
+        setIsCheckingAuth(false);
+      }
+    };
+    checkAuth();
+  }, [router]);
+ if (isCheckingAuth) {
+    return (
+      <div className="min-h-screen flex items-center justify-center">Loading...</div>
+    );
+  }
+
 const handleSubmit = async (e: React.FormEvent) => {
   e.preventDefault();
   setError('');
@@ -25,6 +62,7 @@ const handleSubmit = async (e: React.FormEvent) => {
   }
   router.push('/dashboard');
 }
+
   return (
     <>
       <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">

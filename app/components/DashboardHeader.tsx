@@ -1,7 +1,7 @@
 'use client'
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from 'react';
+import { useState,useRef, useEffect } from 'react';
 import { logout } from '@/app/lib/actions';
 interface User {
 	id: number;
@@ -12,15 +12,32 @@ interface User {
 }
 interface HeaderProps {
 	user?: User;
+	isSidebarOpen?:boolean;
+	toggleSidebar?: ()=> void;
 }
-export default function DahsboardHeader({ user }: HeaderProps) {
+export default function DahsboardHeader({ user, isSidebarOpen, toggleSidebar }: HeaderProps) {
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+	const dropdownRef = useRef<HTMLDivElement>(null);
+ useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node	)) {
+        setIsDropdownOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 	return (
 		<>
 			<header className="sticky top-0 flex w-full bg-white border-gray-200 z-99999 xl:border-b">
 				<div className="flex flex-col items-center justify-between grow xl:flex-row xl:px-6">
 					<div className="flex items-center justify-between w-full gap-2 px-3 py-3 border-b border-gray-200 dark:border-gray-800 sm:gap-4 xl:justify-normal xl:border-b-0 xl:px-0 lg:py-4">
-						<button className="items-center justify-center  w-10 h-10 text-gray-500 border-gray-200 rounded-lg z-99999 dark:border-gray-800 flex dark:text-gray-400 lg:h-11 lg:w-11 xl:border " aria-label="Toggle Sidebar">
+						<button 
+						onClick={toggleSidebar}
+						className="cursor-pointer items-center justify-center  w-10 h-10 text-gray-500 border-gray-200 rounded-lg z-99999 dark:border-gray-800 flex dark:text-gray-400 lg:h-11 lg:w-11 xl:border " aria-label="Toggle Sidebar">
 							<svg
 								width="16"
 								height="12"
@@ -87,7 +104,7 @@ export default function DahsboardHeader({ user }: HeaderProps) {
 					</div>
 					<div className="hidden items-center justify-between w-full gap-4 px-5 py-4 xl:flex shadow-theme-md xl:justify-end xl:px-0 xl:shadow-none">
 						<div className="flex items-center gap-2 2xsm:gap-3">
-							<button className="relative flex items-center justify-center text-gray-500 transition-colors bg-white border border-gray-200 rounded-full hover:text-dark-900 h-11 w-11 hover:bg-gray-100  dark:hover:text-white">
+							{/* <button className="relative flex items-center justify-center text-gray-500 transition-colors bg-white border border-gray-200 rounded-full hover:text-dark-900 h-11 w-11 hover:bg-gray-100  dark:hover:text-white">
 
 								<svg
 									className="hidden dark:block"
@@ -118,9 +135,9 @@ export default function DahsboardHeader({ user }: HeaderProps) {
 										fill="currentColor"
 									/>
 								</svg>
-							</button>
+							</button> */}
 							<div className="relative">
-								<button className="relative flex items-center justify-center  bg-white border border-gray-200 rounded-full dropdown-toggle ">
+								{/* <button className="relative flex items-center justify-center  bg-white border border-gray-200 rounded-full dropdown-toggle ">
 									<span className="absolute right-0 top-0.5 z-10 h-2 w-2 rounded-full bg-orange-400 flex">
 										<span className="absolute inline-flex w-full h-full bg-orange-400 rounded-full opacity-75 animate-ping"></span></span>
 									<svg
@@ -137,16 +154,15 @@ export default function DahsboardHeader({ user }: HeaderProps) {
 											fill="currentColor"
 										/>
 									</svg>
-
-								</button>
+								</button> */}
 							</div>
 						</div>
-						<div className="relative">
+						<div className="relative" ref={dropdownRef}>
 							<button
 								onClick={() => setIsDropdownOpen(!isDropdownOpen)}
 								className="cursor-pointer flex items-center  dropdown-toggle ">
 								<span className="mr-3 overflow-hidden rounded-full h-11 w-11">
-									<Image width={44} height={44} alt="User" src={user?.image || '/default-avatar.png'} /></span>
+								<Image width={44} height={44} alt="User" src={user?.image || '/default-avatar.png'} /></span>
 								<span className="block mr-1 font-medium text-theme-sm">{user?.firstName}</span>
 								<svg
 									className="stroke-gray-500 dark:stroke-gray-400 transition-transform duration-200"
@@ -169,11 +185,11 @@ export default function DahsboardHeader({ user }: HeaderProps) {
 
 								<div className="z-40 absolute text-sm right-0 mt-[17px] flex w-[260px] flex-col rounded-2xl border border-gray-200 bg-white p-3 shadow-theme-lg dark:border-gray-800 dark:bg-gray-dark">
 									<div>
-										<span className="block font-medium  no-underline">{user?.firstName} {user?.lastName}</span>
+										<span className="block   no-underline font-bold">{user?.firstName} {user?.lastName}</span>
 										<span className="mt-0.5 block text-theme-xs  no-underline">{user?.email}</span>
 									</div>
 									<ul className="flex flex-col gap-1 pt-4 pb-3 border-b border-gray-200 "><li>
-										<Link className="block w-full text-left px-4 py-2 text-sm flex items-center gap-3 px-3 py-2 font-medium text-gray-700 rounded-lg group text-theme-sm hover:bg-gray-100 " href="/profile" data-discover="true">
+										<Link className="block w-full text-left px-4 py-2 text-sm flex items-center gap-3 px-3 py-2 font-medium text-gray-700 rounded-lg group text-theme-sm hover:bg-gray-100 " href="/dashboard/profile" data-discover="true">
 											<svg
 												className="fill-gray-500 "
 												width="24"
@@ -233,7 +249,7 @@ export default function DahsboardHeader({ user }: HeaderProps) {
 											</Link>
 										</li>
 									</ul>
-									<form action={logout} method="POST">
+									<form action={logout}>
 										<button
 											type="submit"
 											className="cursor-pointer  flex items-center gap-3 px-3 py-2 mt-3 font-medium  rounded-lg group text-theme-sm "
