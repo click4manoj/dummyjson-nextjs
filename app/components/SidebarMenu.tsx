@@ -20,7 +20,7 @@ export default function SidebarMenu({ isSidebarOpen }: { isSidebarOpen: boolean 
 								<button
 									aria-expanded="false"
 									onClick={() => toggleDropdown('dashboard')}
-									className="cursor-pointer rounded-lg px-3.5 font-medium text-dark-4 transition-all duration-200 dark:text-dark-6 hover:bg-gray-100 hover:text-dark hover:dark:bg-[#FFFFFF1A] hover:dark:text-white flex w-full items-center gap-3 py-3"
+									className="cursor-pointer rounded-lg px-3.5 font-medium text-dark-4 transition-all duration-200  hover:bg-gray-100 hover:text-dark   flex w-full items-center gap-3 py-3"
 								>
 									<LayoutDashboard />
 									{!isSidebarOpen && (
@@ -51,7 +51,7 @@ export default function SidebarMenu({ isSidebarOpen }: { isSidebarOpen: boolean 
 											<li role="none">
 												<Link
 													href="/dashboard"
-													className="rounded-lg px-3.5 font-medium text-dark-4 transition-all duration-200 dark:text-dark-6 hover:bg-gray-100 hover:text-dark hover:dark:bg-[#FFFFFF1A] hover:dark:text-white relative block py-2"
+													className="rounded-lg px-3.5 font-medium text-dark-4 transition-all duration-200 hover:bg-gray-100 hover:text-dark   relative block py-2"
 												>
 												
 													<span>Dashboard</span>
@@ -60,7 +60,7 @@ export default function SidebarMenu({ isSidebarOpen }: { isSidebarOpen: boolean 
 											<li role="none">
 												<Link
 													href="/dashboard/products"
-													className="rounded-lg px-3.5 font-medium text-dark-4 transition-all duration-200 dark:text-dark-6 hover:bg-gray-100 hover:text-dark hover:dark:bg-[#FFFFFF1A] hover:dark:text-white relative block py-2"
+													className="rounded-lg px-3.5 font-medium text-dark-4 transition-all duration-200  hover:bg-gray-100 hover:text-dark   relative block py-2"
 												>
 													<span>Products</span>
 												</Link>
@@ -84,7 +84,7 @@ export default function SidebarMenu({ isSidebarOpen }: { isSidebarOpen: boolean 
 						<li>
 							<Link
 								href="/dashboard/profile"
-								className="rounded-lg px-3.5 font-medium text-dark-4 transition-all duration-200 dark:text-dark-6 hover:bg-gray-100 hover:text-dark hover:dark:bg-[#FFFFFF1A] hover:dark:text-white relative flex items-center gap-3 py-3"
+								className="rounded-lg px-3.5 font-medium text-dark-4 transition-all duration-200  hover:text-dark hover:dark:bg-[#FFFFFF1A]  relative flex items-center gap-3 py-3"
 							>
 								<UserRound />
 								{!isSidebarOpen && (
@@ -95,7 +95,7 @@ export default function SidebarMenu({ isSidebarOpen }: { isSidebarOpen: boolean 
 						<li>
 							<Link
 								href="/dashboard/users"
-								className="rounded-lg px-3.5 font-medium text-dark-4 transition-all duration-200 dark:text-dark-6 hover:bg-gray-100 hover:text-dark hover:dark:bg-[#FFFFFF1A] hover:dark:text-white relative flex items-center gap-3 py-3"
+								className="rounded-lg px-3.5 font-medium text-dark-4 transition-all duration-200   hover:text-dark hover:dark:bg-[#FFFFFF1A]  relative flex items-center gap-3 py-3"
 							>
 								<Users />
 								{!isSidebarOpen && (
