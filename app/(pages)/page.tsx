@@ -22,7 +22,7 @@ const [username, setUsername] = useState('');
 const [password,setPassword] = useState('');
 const [error,setError] = useState('');
 const [isCheckingAuth, setIsCheckingAuth] = useState(true); // Added state for auth check
-
+const [rememberMe, setRememberMe] = useState(false);
   useEffect(() => {
     const checkAuth = async () => {
       try {
@@ -53,7 +53,7 @@ const handleSubmit = async (e: React.FormEvent) => {
   const res = await fetch('/api/login',{
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({username,password}),
+    body: JSON.stringify({username,password, rememberMe}),
   });
   if(!res.ok){
     const body = await res.json();
@@ -118,6 +118,7 @@ const handleSubmit = async (e: React.FormEvent) => {
                       name="remember-me"
                       type="checkbox"
                       className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                        onChange={e => setRememberMe(e.target.checked)}
                     />
                     <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
                       Remember me

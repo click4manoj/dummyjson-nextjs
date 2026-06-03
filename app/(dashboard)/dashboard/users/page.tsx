@@ -3,12 +3,26 @@ import { SquarePen, Trash } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
+interface Address {
+  address: string;
+  city: string;
+  state: string;
+  stateCode: string;
+  postalCode: string;
+  coordinates: {
+    lat: number;
+    lng: number;
+  };
+  country: string;
+}
 interface Users {
   id: number;
   firstName: string;
   lastName: string;
   email: string;
   image: string;
+  ip: number;
+  address: Address;
 }
 export default function DashboardUsers(){
     const [users, setUsers] = useState<Users[]>([]);
@@ -25,7 +39,11 @@ export default function DashboardUsers(){
         fetchUsers();
     },[])
     return( <>
+    <div className="flex justify-between">
+
      <h1 className="text-2xl font-semibold mb-6">Users List</h1>
+     <Link href={'/dashboard/add-user'} className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mb-6">Add User</Link>
+     </div>
       {users.length > 0 ? (
     <div className="overflow-x-auto">
       <table className="table-auto w-full text-left whitespace-no-wrap">
@@ -35,6 +53,9 @@ export default function DashboardUsers(){
             <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-300">User Image</th>
             <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-300 rounded-tl rounded-bl">First Name</th>
             <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-300">Email</th>
+            <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-300">IP</th>
+            <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-300">Address</th>
+            <th className="px-4 py-3 title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-300">Country</th>
             <th className="px-4 py-3 text-right title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-300 rounded-tr rounded-br">Actions</th>
           </tr>
         </thead>
@@ -47,6 +68,9 @@ export default function DashboardUsers(){
             </td>
             <td className="px-4 py-3">{user.firstName}</td>
             <td className="px-4 py-3">{user.email}</td>
+            <td className="px-4 py-3">{user.ip}</td>
+            <td className="px-4 py-3">{user.address.address}</td>
+            <td className="px-4 py-3">{user.address.country}</td>
             
             <td className="px-4 py-3 text-right flex gap-1 justify-end">
             <button className="text-gray-900 cursor-pointer" onClick={()=> handleDelete(user.id)}> <Trash /></button>
