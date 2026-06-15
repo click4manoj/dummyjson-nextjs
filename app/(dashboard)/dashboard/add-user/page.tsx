@@ -3,7 +3,7 @@ import { useState, FormEvent, useEffect } from 'react';
 import { addUser, NewUser, UserResponse } from '@/app/api/addUser/user';
 export default function AddUser() {
 	const [loading, setLoading] = useState(false);
-	const [showSuccess	, setShowSuccess] = useState(false);
+	const [showSuccess, setShowSuccess] = useState(false);
 	const [error, setError] = useState<string | null>(null);
 	const [addedUser, setAddedUser] = useState<UserResponse | null>(null);
 	const [formData, setFormData] = useState<NewUser>({
@@ -25,7 +25,7 @@ export default function AddUser() {
 			const user: UserResponse = await addUser(formData);
 			setAddedUser(user);
 			setShowSuccess(true);
-		
+
 		} catch (error: unknown) {
 			const message = error instanceof Error ? error.message : 'Unknown error';
 			setError(message);
@@ -33,22 +33,22 @@ export default function AddUser() {
 			setLoading(false);
 		}
 	}
-	 useEffect(() => {
-    if (showSuccess) {
-      const timer = setTimeout(() => {
-        setShowSuccess(false);
-      }, 5000); // 100 seconds = 100 * 1000 ms
-      return () => clearTimeout(timer);
-    }
-  }, [showSuccess]);
+	useEffect(() => {
+		if (showSuccess) {
+			const timer = setTimeout(() => {
+				setShowSuccess(false);
+			}, 5000); 
+			return () => clearTimeout(timer);
+		}
+	}, [showSuccess]);
 
 	return (
 		<>
 
 			<h1 className="text-2xl font-semibold">Add User</h1>
-				{showSuccess && addedUser && (
+			{showSuccess && addedUser && (
 				<>
-					<div  className="fixed top-24  right-4 bg-white flex items-center text-green-700 w-full max-w-xs p-4 text-body bg-neutral-primary-soft rounded-base shadow-xs border border-gray-200 border-default" role="alert">
+					<div className="fixed top-24  right-4 bg-white flex items-center text-green-700 w-full max-w-xs p-4 text-body bg-neutral-primary-soft rounded-base shadow-xs border border-gray-200 border-default" role="alert">
 						<svg
 							height={24}
 							width={24}
@@ -65,8 +65,22 @@ export default function AddUser() {
 						<div className="ms-2.5 text-sm ">Successfully Added User!</div>
 						<button onClick={() => setShowSuccess(false)} type="button" className="cursor-pointer ms-auto flex items-center justify-center text-body hover:text-heading bg-transparent box-border border border-transparent hover:bg-neutral-secondary-medium focus:ring-4 focus:ring-neutral-tertiary font-medium leading-5 rounded text-sm h-8 w-8 focus:outline-none" data-dismiss-target="#toast-default" aria-label="Close">
 							<span className="sr-only">Close</span>
-							<svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18 17.94 6M18 18 6.06 6" /></svg>
-						</button>
+							<svg
+								aria-hidden="true"
+								xmlns="http://www.w3.org/2000/svg"
+								width="24"
+								height="24"
+								fill="none"
+								viewBox="0 0 24 24"
+							>
+								<path
+									stroke="currentColor"
+									strokeLinecap="round"
+									strokeLinejoin="round"
+									strokeWidth="2"
+									d="M6 18 17.94 6M18 18 6.06 6"
+								/>
+							</svg>						</button>
 					</div>
 					{/* <pre style={{ background: '#f5f5f5', padding: '1rem', overflow: 'auto' }}>
 						{JSON.stringify(addedUser, null, 2)}
@@ -136,7 +150,7 @@ export default function AddUser() {
 			</div>
 			{error && <p style={{ color: 'red', marginTop: '1rem' }}>Error: {error}</p>}
 
-		
+
 		</>
 	)
 }
