@@ -74,7 +74,7 @@ export default function DahsboardHeader({ user, isSidebarOpen, toggleSidebar }: 
 							</svg>
 
 						</button>
-						<div className="hidden xl:block">
+						{/* <div className="hidden xl:block">
 							<form>
 								<div className="relative">
 									<span className="absolute -translate-y-1/2 pointer-events-none left-4 top-1/2">
@@ -100,7 +100,7 @@ export default function DahsboardHeader({ user, isSidebarOpen, toggleSidebar }: 
 									</button>
 								</div>
 							</form>
-						</div>
+						</div> */}
 					</div>
 					<div className="hidden items-center justify-between w-full gap-4 px-5 py-4 xl:flex shadow-theme-md xl:justify-end xl:px-0 xl:shadow-none">
 						<div className="flex items-center gap-2 2xsm:gap-3">
