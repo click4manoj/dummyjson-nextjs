@@ -1,9 +1,13 @@
 import { Heart, Star } from "lucide-react";
 import Image from "next/image";
+import React from 'react';
+import Slider from "react-slick";
+// import "slick-carousel/slick/slick.css";
+// import "slick-carousel/slick/slick-theme.css";
 interface Review {
   rating: number;
   comment: string;
-  date: string;
+  date: string; 
   reviewerName: string;
   reviewerEmail: string;
 }
@@ -40,6 +44,7 @@ export default  async function SingleProduct<Product>({params}: {params: Promise
       />
     ));
   };
+  
   return (
     <>
       <section className="text-gray-600 body-font overflow-hidden">
